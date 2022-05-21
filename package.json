@@ -1,0 +1,19 @@
+{
+  "name": "dashboard-challenge",
+  "version": "1.0.0",
+  "description": "Created by Breno da Cunha Campanha (https://github.com/brenoccamp).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brenoccamp/dashboard-challenge"
+  },
+  "author": "Breno da Cunha Campanha - https://github.com/brenoccamp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brenoccamp/dashboard-challenge/issues"
+  },
+  "homepage": "https://github.com/brenoccamp/dashboard-challenge#readme"
+}
