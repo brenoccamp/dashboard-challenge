@@ -168,4 +168,40 @@ describe('(I&T Tests) Testing dashboard-data routes', () => {
       expect(chaiHtppResponse.body.error).to.be.equal('Internal server error');
     });
   });
+
+  describe('Route GET "/dashboard-data/sales"', () => {
+    before(() => {
+      sinon
+        .stub(SalesModel, 'findAll')
+        .resolves(mockedSales as SalesModel[]);
+    });
+
+    after(() => {
+      (SalesModel.findAll as sinon.SinonStub).restore();
+    });
+
+    it('Success Case - Returns status 200 and a json containing all registered sales', async () => {
+      chaiHtppResponse = await chai
+        .request(app)
+        .get('/dashboard-data/sales');
+      
+      expect(chaiHtppResponse.status).to.be.equal(200);
+      expect(chaiHtppResponse.body).to.be.deep.equal(mockedSales);
+    });
+
+    it('Unexpected Error Case - Returns status 500 and a json containing "Internal server error"', async () => {
+      (SalesModel.findAll as sinon.SinonStub).restore();
+
+      sinon
+        .stub(SalesModel, 'findAll')
+        .throws();
+
+      chaiHtppResponse = await chai
+        .request(app)
+        .get('/dashboard-data/sales');
+
+      expect(chaiHtppResponse.status).to.be.equal(500);
+      expect(chaiHtppResponse.body.error).to.be.equal('Internal server error');
+    });
+  });
 })
