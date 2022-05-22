@@ -8,7 +8,7 @@ dashboardRouter.get(
 );
 
 dashboardRouter.get(
-  '/products_services',
+  '/products-services',
   /* dashboardController.getAllProducts */
 );
 
