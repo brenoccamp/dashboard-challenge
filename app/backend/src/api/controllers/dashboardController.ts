@@ -10,7 +10,7 @@ export default class DashboardController implements IDashboardController {
     try {
       const allSellers = await this._dashboardService.getAllSellers();
 
-      return res.status(200).json(allSellers);
+      return res.status(200).json({ data: allSellers });
     } catch (error) {
       next(error);
     }
@@ -24,7 +24,7 @@ export default class DashboardController implements IDashboardController {
     try {
       const allProductsServices = await this._dashboardService.getAllProductsServices();
 
-      return res.status(200).json(allProductsServices);
+      return res.status(200).json({ data: allProductsServices });
     } catch (error) {
       next(error);
     }
@@ -34,7 +34,7 @@ export default class DashboardController implements IDashboardController {
     try {
       const allStores = await this._dashboardService.getAllStores();
 
-      return res.status(200).json(allStores);
+      return res.status(200).json({ data: allStores });
     } catch (error) {
       next(error);
     }
@@ -44,7 +44,7 @@ export default class DashboardController implements IDashboardController {
     try {
       const allClients = await this._dashboardService.getAllCustomers();
 
-      return res.status(200).json(allClients);
+      return res.status(200).json({ data: allClients });
     } catch (error) {
       next(error);
     }
@@ -54,7 +54,7 @@ export default class DashboardController implements IDashboardController {
     try {
       const allSales = await this._dashboardService.getAllSales();
 
-      return res.status(200).json(allSales);
+      return res.status(200).json({ data: allSales });
     } catch (error) {
       next(error);
     }

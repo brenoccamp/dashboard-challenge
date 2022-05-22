@@ -1,13 +1,13 @@
 const mockedProductsServices = [
   {
     id: 1,
-    nome: 'Generic parts',
-    preco: 10.00
+    name: 'Generic parts',
+    price: 10.00
   },
   {
     id: 2,
-    nome: 'Generic maintenance',
-    preco: 20.00,
+    name: 'Generic maintenance',
+    price: 20.00,
   }
 ];
 
