@@ -6,7 +6,7 @@ class SellersModel extends Model {
 
   declare fullname: string;
 
-  declare storeId: string;
+  declare storeId: number;
 
   declare createdAt: Date;
 

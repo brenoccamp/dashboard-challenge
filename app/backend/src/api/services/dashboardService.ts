@@ -6,6 +6,11 @@ import {
   ICustomer,
   ISale,
 } from '../../interfaces/dashboardInterfaces';
+import SellersModel from '../../database/models/SellersModel';
+import ProductsServicesModel from '../../database/models/ProductsServicesModel';
+import StoresModel from '../../database/models/StoresModel';
+import CustomersModel from '../../database/models/CustomersModel';
+import SalesModel from '../../database/models/SalesModel';
 
 export default class DashboardService implements IDashboardService {
   private _sellersModel;
@@ -45,9 +50,9 @@ export default class DashboardService implements IDashboardService {
   }
 
   async getAllCustomers(): Promise<ICustomer[]> {
-    const allClients = await this._customersModel.findAll();
+    const allCustomers = await this._customersModel.findAll();
 
-    return allClients;
+    return allCustomers;
   }
 
   async getAllSales(): Promise<ISale[]> {

@@ -14,17 +14,19 @@ class SalesModel extends Model {
 
   declare soldAmount: number;
 
-  declare createdAt: Date;
+  declare saleDate: Date;
 
   declare updatedAt: Date;
 }
 
 SalesModel.init({
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  name: { type: DataTypes.STRING, allowNull: false },
-  city: { type: DataTypes.STRING, allowNull: false },
-  state: { type: DataTypes.STRING, allowNull: false },
-  createdAt: DataTypes.DATE,
+  sellerId: { type: DataTypes.INTEGER, allowNull: false },
+  productServiceId: { type: DataTypes.INTEGER, allowNull: false },
+  customerId: { type: DataTypes.INTEGER, allowNull: false },
+  storeId: { type: DataTypes.INTEGER, allowNull: false },
+  soldAmount: { type: DataTypes.INTEGER, allowNull: false },
+  saleDate: { type: DataTypes.DATE, field: 'saleDate' },
   updatedAt: DataTypes.DATE,
 }, {
   sequelize: db,

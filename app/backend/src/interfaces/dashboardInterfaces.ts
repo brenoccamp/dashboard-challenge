@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 
 export interface ISeller {
   id: number;
-  fullName: string;
+  fullname: string;
   storeId: number;
 }
 
@@ -21,7 +21,7 @@ export interface IStore {
 
 export interface ICustomer {
   id: number;
-  fullName: string;
+  fullname: string;
   city: string;
   state: string;
 }
@@ -29,7 +29,7 @@ export interface ICustomer {
 export interface ISale {
   id: number;
   sellerId: number;
-  productId: number;
+  productServiceId: number;
   customerId: number;
   storeId: number;
   soldAmount: number;
