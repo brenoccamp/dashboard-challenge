@@ -58,4 +58,25 @@ describe('(Dashboard Service)-Testing Dashboard Service methods', () => {
       expect(serviceResponse[0]).to.have.a.property('price').to.be.a('number');
     });
   });
+
+  describe('Method getAllStores', () => {
+    before(() => {
+      sinon.stub(StoresModel, 'findAll').resolves(mockedStores);
+    });
+
+    after(() => {
+      StoresModel.findAll.restore();
+    });
+
+    it('Success Case - Returns an array containing all products/services objects registered on database', async () => {
+      const serviceResponse = await dashboardService.getAllStores();
+
+      expect(serviceResponse).to.be.an('array');
+      expect(serviceResponse[0]).to.be.an('object');
+      expect(serviceResponse[0]).to.have.a.property('id').to.be.a('number');
+      expect(serviceResponse[0]).to.have.a.property('name').to.be.a('string');
+      expect(serviceResponse[0]).to.have.a.property('city').to.be.a('string');
+      expect(serviceResponse[0]).to.have.a.property('state').to.be.a('string');
+    });
+  });
 });
