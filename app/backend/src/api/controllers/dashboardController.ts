@@ -15,4 +15,28 @@ export default class DashboardController implements IDashboardController {
       next(error);
     }
   }
+
+  async getAllProductsServices(
+    _req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response | void> {
+    try {
+      const allProductsServices = await this._dashboardService.getAllProductsServices();
+
+      return res.status(200).json(allProductsServices);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getAllStores(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+    try {
+      const allStores = await this._dashboardService.getAllStores();
+
+      return res.status(200).json(allStores);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
