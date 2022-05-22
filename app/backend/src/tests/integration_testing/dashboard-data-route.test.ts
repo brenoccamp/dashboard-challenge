@@ -10,7 +10,13 @@ import {
   CustomersModel,
   SalesModel
 } from '../../database/models';
-import { mockedSellers } from '../__mocks__/sellersMock';
+import {
+  mockedSellers,
+  mockedProductsServices,
+  mockedStores,
+  mockedCustomers,
+  mockedSales,
+} from '../__mocks__/';
 
 chai.use(chaiHttp);
 
@@ -39,7 +45,7 @@ describe('(I&T Tests) Testing dashboard-data routes', () => {
       expect(chaiHtppResponse.body).to.be.deep.equal(mockedSellers);
     });
 
-    it('Failed Case - Returns status 500 and a json containing "Internal server error"', async () => {
+    it('Unexpected Error Case - Returns status 500 and a json containing "Internal server error"', async () => {
       (SellersModel.findAll as sinon.SinonStub).restore();
 
       sinon
@@ -49,6 +55,42 @@ describe('(I&T Tests) Testing dashboard-data routes', () => {
       chaiHtppResponse = await chai
         .request(app)
         .get('/dashboard-data/sellers');
+
+      expect(chaiHtppResponse.status).to.be.equal(500);
+      expect(chaiHtppResponse.body.error).to.be.equal('Internal server error');
+    });
+  });
+
+  describe('Route GET "/dashboard-data/products-services"', () => {
+    before(() => {
+      sinon
+        .stub(ProductsServicesModel, 'findAll')
+        .resolves(mockedProductsServices as SellersModel[]);
+    });
+
+    after(() => {
+      (ProductsServicesModel.findAll as sinon.SinonStub).restore();
+    });
+
+    it('Success Case - Returns status 200 and a json containing all registered products/services', async () => {
+      chaiHtppResponse = await chai
+        .request(app)
+        .get('/dashboard-data/products-services');
+      
+      expect(chaiHtppResponse.status).to.be.equal(200);
+      expect(chaiHtppResponse.body).to.be.deep.equal(mockedProductsServices);
+    });
+
+    it('Unexpected Error Case - Returns status 500 and a json containing "Internal server error"', async () => {
+      (ProductsServicesModel.findAll as sinon.SinonStub).restore();
+
+      sinon
+        .stub(ProductsServicesModel, 'findAll')
+        .throws();
+
+      chaiHtppResponse = await chai
+        .request(app)
+        .get('/dashboard-data/products-services');
 
       expect(chaiHtppResponse.status).to.be.equal(500);
       expect(chaiHtppResponse.body.error).to.be.equal('Internal server error');
