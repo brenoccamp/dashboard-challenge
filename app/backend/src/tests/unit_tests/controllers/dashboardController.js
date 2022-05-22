@@ -10,13 +10,20 @@ const {
   mockedCustomers,
   mockedSales,
 } = require('../../__mocks__');
+import {
+  SellersModel,
+  ProductsServicesModel,
+  StoresModel,
+  CustomersModel,
+  SalesModel
+} from '../../../database/models';
 
 const dashboardService = new DashboardService();
 const dashboardController = new DashboardController(dashboardService);
 
 const errorObj = Error('Oops... Something was wrong!');
 
-describe('(Dashboard Controller) 1- Testing Dashboard Controller methods', () => {
+describe('(Dashboard Controller)-Testing Dashboard Controller methods', () => {
   let req = {}; res = {}; next = () => {};
 
   describe('Method getAllSellers', () => {
