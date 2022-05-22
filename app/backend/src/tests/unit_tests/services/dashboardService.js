@@ -100,4 +100,28 @@ describe('(Dashboard Service)-Testing Dashboard Service methods', () => {
       expect(serviceResponse[0]).to.have.a.property('state').to.be.a('string');
     });
   });
+
+  describe('Method getAllSales', () => {
+    before(() => {
+      sinon.stub(SalesModel, 'findAll').resolves(mockedSales);
+    });
+
+    after(() => {
+      SalesModel.findAll.restore();
+    });
+
+    it('Success Case - Returns an array containing all products/services objects registered on database', async () => {
+      const serviceResponse = await dashboardService.getAllSales();
+
+      expect(serviceResponse).to.be.an('array');
+      expect(serviceResponse[0]).to.be.an('object');
+      expect(serviceResponse[0]).to.have.a.property('id').to.be.a('number');
+      expect(serviceResponse[0]).to.have.a.property('sellerId').to.be.a('number');
+      expect(serviceResponse[0]).to.have.a.property('productId').to.be.a('number');
+      expect(serviceResponse[0]).to.have.a.property('customerId').to.be.a('number');
+      expect(serviceResponse[0]).to.have.a.property('storeId').to.be.a('number');
+      expect(serviceResponse[0]).to.have.a.property('soldAmount').to.be.a('number');
+      expect(serviceResponse[0]).to.have.a.property('saleDate').to.be.a('Date');
+    });
+  });
 });
