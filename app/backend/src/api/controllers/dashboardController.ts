@@ -49,4 +49,14 @@ export default class DashboardController implements IDashboardController {
       next(error);
     }
   }
+
+  async getAllSales(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+    try {
+      const allSales = await this._dashboardService.getAllSales();
+
+      return res.status(200).json(allSales);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

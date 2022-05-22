@@ -19,11 +19,21 @@ export interface IStore {
   state: string;
 }
 
-export interface IClient {
+export interface ICustomer {
   id: number;
   fullName: string;
   city: string;
   state: string;
+}
+
+export interface ISale {
+  id: number;
+  sellerId: number;
+  productId: number;
+  customerId: number;
+  storeId: number;
+  soldAmount: number;
+  saleDate: Date;
 }
 
 export interface IDashboardController {
@@ -31,11 +41,13 @@ export interface IDashboardController {
   getAllProductsServices(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
   getAllStores(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
   getAllCustomers(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
+  getAllSales(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
 }
 
 export interface IDashboardService {
   getAllSellers(): Promise<ISeller[]>;
   getAllProductsServices(): Promise<IProductService[]>;
   getAllStores(): Promise<IStore[]>;
-  getAllCustomers(): Promise<IClient[]>;
+  getAllCustomers(): Promise<ICustomer[]>;
+  getAllSales(): Promise<ISale[]>;
 }
