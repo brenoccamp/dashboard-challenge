@@ -5,7 +5,8 @@ const DashboardController = require('../../../api/controllers/dashboardControlle
 const DashboardService = require('../../../api/services/dashboardService');
 const {
   mockedSellers,
-  mockedProductsServices
+  mockedProductsServices,
+  mockedStores,
 } = require('../../__mocks__');
 
 const dashboardService = new DashboardService();
@@ -14,9 +15,9 @@ const dashboardController = new DashboardController(dashboardService);
 const errorObj = Error('Oops... Something was wrong!');
 
 describe('(Dashboard Controller) 1- Testing Dashboard Controller methods', () => {
-  describe('Method getAllSellers', () => {
-    let req = {}; res = {}; next = () => {};
+  let req = {}; res = {}; next = () => {};
 
+  describe('Method getAllSellers', () => {
     before(() => {
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
@@ -47,8 +48,6 @@ describe('(Dashboard Controller) 1- Testing Dashboard Controller methods', () =>
   });
 
   describe('Method getAllProductsServices', () => {
-    let req = {}; res = {}; next = () => {};
-
     before(() => {
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
@@ -60,7 +59,7 @@ describe('(Dashboard Controller) 1- Testing Dashboard Controller methods', () =>
       dashboardService.getAllProductsServices.restore();
     });
 
-    it('Success Case - Returns status 200 and a json containing all registered sellers', async () => {
+    it('Success Case - Returns status 200 and a json containing all registered products/services', async () => {
       await dashboardController.getAllProductsServices(req, res, next);
 
       expect(res.status.calledWith(200)).to.be.equal(true);
@@ -73,6 +72,36 @@ describe('(Dashboard Controller) 1- Testing Dashboard Controller methods', () =>
       next = sinon.stub().returns();
 
       await dashboardController.getAllProductsServices(req, res, next);
+
+      expect(next.calledWith(errorObj)).to.be.equal(true);
+    });
+  });
+
+  describe('Method getAllStores', () => {
+    before(() => {
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(dashboardService, 'getAllStores').resolves(mockedStores);
+    });
+
+    after(() => {
+      dashboardService.getAllStores.restore();
+    });
+
+    it('Success Case - Returns status 200 and a json containing all registered stores', async () => {
+      await dashboardController.getAllStores(req, res, next);
+
+      expect(res.status.calledWith(200)).to.be.equal(true);
+      expect(res.json.calledWith(mockedStores)).to.be.equal(true);
+    });
+
+    it('Unexpected Error Case - Returns status 500 and a json containing "Internal server error"', async () => {
+      dashboardController.getAllStores.restore();
+      sinon.stub(dashboardController, 'getAllStores').throws(errorObj);
+      next = sinon.stub().returns();
+
+      await dashboardController.getAllStores(req, res, next);
 
       expect(next.calledWith(errorObj)).to.be.equal(true);
     });
