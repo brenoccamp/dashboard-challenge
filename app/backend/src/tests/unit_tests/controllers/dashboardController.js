@@ -4,7 +4,8 @@ const sinon = require('sinon');
 const DashboardController = require('../../../api/controllers/dashboardController');
 const DashboardService = require('../../../api/services/dashboardService');
 const {
-  mockedSellers
+  mockedSellers,
+  mockedProductsServices
 } = require('../../__mocks__');
 
 const dashboardService = new DashboardService();
@@ -40,6 +41,38 @@ describe('(Dashboard Controller) 1- Testing Dashboard Controller methods', () =>
       next = sinon.stub().returns();
 
       await dashboardController.getAllSellers(req, res, next);
+
+      expect(next.calledWith(errorObj)).to.be.equal(true);
+    });
+  });
+
+  describe('Method getAllProductsServices', () => {
+    let req = {}; res = {}; next = () => {};
+
+    before(() => {
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(dashboardService, 'getAllProductsServices').resolves(mockedProductsServices);
+    });
+
+    after(() => {
+      dashboardService.getAllProductsServices.restore();
+    });
+
+    it('Success Case - Returns status 200 and a json containing all registered sellers', async () => {
+      await dashboardController.getAllProductsServices(req, res, next);
+
+      expect(res.status.calledWith(200)).to.be.equal(true);
+      expect(res.json.calledWith(mockedProductsServices)).to.be.equal(true);
+    });
+
+    it('Unexpected Error Case - Returns status 500 and a json containing "Internal server error"', async () => {
+      dashboardController.getAllProductsServices.restore();
+      sinon.stub(dashboardController, 'getAllProductsServices').throws(errorObj);
+      next = sinon.stub().returns();
+
+      await dashboardController.getAllProductsServices(req, res, next);
 
       expect(next.calledWith(errorObj)).to.be.equal(true);
     });
