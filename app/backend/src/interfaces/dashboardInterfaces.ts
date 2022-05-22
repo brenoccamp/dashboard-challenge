@@ -6,10 +6,18 @@ export interface ISeller {
   lojaId: number;
 }
 
+export interface IProductService {
+  id: number;
+  nome: string;
+  preco: number;
+}
+
 export interface IDashboardController {
   getAllSellers(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
+  getAllProductsServices(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
 }
 
 export interface IDashboardService {
   getAllSellers(): Promise<ISeller[]>;
+  getAllProductsServices(): Promise<IProductService[]>;
 }
