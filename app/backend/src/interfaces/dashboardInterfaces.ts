@@ -19,14 +19,23 @@ export interface IStore {
   state: string;
 }
 
+export interface IClient {
+  id: number;
+  fullName: string;
+  city: string;
+  state: string;
+}
+
 export interface IDashboardController {
   getAllSellers(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
   getAllProductsServices(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
   getAllStores(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
+  getAllCustomers(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
 }
 
 export interface IDashboardService {
   getAllSellers(): Promise<ISeller[]>;
   getAllProductsServices(): Promise<IProductService[]>;
   getAllStores(): Promise<IStore[]>;
+  getAllCustomers(): Promise<IClient[]>;
 }

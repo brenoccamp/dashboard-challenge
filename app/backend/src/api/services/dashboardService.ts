@@ -1,4 +1,5 @@
 import {
+  IClient,
   IDashboardService,
   IProductService,
   ISeller,
@@ -12,10 +13,13 @@ export default class DashboardService implements IDashboardService {
 
   private _storesModel;
 
+  private _customersModel;
+
   constructor() {
     this._sellersModel = SellersModel;
     this._productsServicesModel = ProductsServicesModel;
     this._storesModel = StoresModel;
+    this._customersModel = CustomersModel;
   }
 
   async getAllSellers(): Promise<ISeller[]> {
@@ -34,5 +38,11 @@ export default class DashboardService implements IDashboardService {
     const allStores = await this._storesModel.findAll();
 
     return allStores;
+  }
+
+  async getAllCustomers(): Promise<IClient[]> {
+    const allClients = await this._customersModel.findAll();
+
+    return allClients;
   }
 }
