@@ -108,7 +108,7 @@ describe('(I&T Tests) Testing dashboard-data routes', () => {
       (StoresModel.findAll as sinon.SinonStub).restore();
     });
 
-    it('Success Case - Returns status 200 and a json containing all registered products/services', async () => {
+    it('Success Case - Returns status 200 and a json containing all registered stores', async () => {
       chaiHtppResponse = await chai
         .request(app)
         .get('/dashboard-data/stores');
@@ -127,6 +127,42 @@ describe('(I&T Tests) Testing dashboard-data routes', () => {
       chaiHtppResponse = await chai
         .request(app)
         .get('/dashboard-data/stores');
+
+      expect(chaiHtppResponse.status).to.be.equal(500);
+      expect(chaiHtppResponse.body.error).to.be.equal('Internal server error');
+    });
+  });
+
+  describe('Route GET "/dashboard-data/customers"', () => {
+    before(() => {
+      sinon
+        .stub(CustomersModel, 'findAll')
+        .resolves(mockedCustomers as CustomersModel[]);
+    });
+
+    after(() => {
+      (CustomersModel.findAll as sinon.SinonStub).restore();
+    });
+
+    it('Success Case - Returns status 200 and a json containing all registered customers', async () => {
+      chaiHtppResponse = await chai
+        .request(app)
+        .get('/dashboard-data/customers');
+      
+      expect(chaiHtppResponse.status).to.be.equal(200);
+      expect(chaiHtppResponse.body).to.be.deep.equal(mockedCustomers);
+    });
+
+    it('Unexpected Error Case - Returns status 500 and a json containing "Internal server error"', async () => {
+      (CustomersModel.findAll as sinon.SinonStub).restore();
+
+      sinon
+        .stub(CustomersModel, 'findAll')
+        .throws();
+
+      chaiHtppResponse = await chai
+        .request(app)
+        .get('/dashboard-data/customers');
 
       expect(chaiHtppResponse.status).to.be.equal(500);
       expect(chaiHtppResponse.body.error).to.be.equal('Internal server error');
