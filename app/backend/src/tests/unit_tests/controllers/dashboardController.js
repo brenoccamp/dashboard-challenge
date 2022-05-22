@@ -8,6 +8,7 @@ const {
   mockedProductsServices,
   mockedStores,
   mockedCustomers,
+  mockedSales,
 } = require('../../__mocks__');
 
 const dashboardService = new DashboardService();
@@ -133,6 +134,36 @@ describe('(Dashboard Controller) 1- Testing Dashboard Controller methods', () =>
       next = sinon.stub().returns();
 
       await dashboardController.getAllCustomers(req, res, next);
+
+      expect(next.calledWith(errorObj)).to.be.equal(true);
+    });
+  });
+
+  describe('Method getAllSales', () => {
+    before(() => {
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(dashboardService, 'getAllSales').resolves(mockedSales);
+    });
+
+    after(() => {
+      dashboardService.getAllSales.restore();
+    });
+
+    it('Success Case - Returns status 200 and a json containing all registered sales', async () => {
+      await dashboardController.getAllSales(req, res, next);
+
+      expect(res.status.calledWith(200)).to.be.equal(true);
+      expect(res.json.calledWith(mockedSales)).to.be.equal(true);
+    });
+
+    it('Unexpected Error Case - Returns status 500 and a json containing "Internal server error"', async () => {
+      dashboardController.getAllSales.restore();
+      sinon.stub(dashboardController, 'getAllSales').throws(errorObj);
+      next = sinon.stub().returns();
+
+      await dashboardController.getAllSales(req, res, next);
 
       expect(next.calledWith(errorObj)).to.be.equal(true);
     });
