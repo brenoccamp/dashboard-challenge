@@ -21,10 +21,10 @@ class App {
     };
 
     this.app.use(accessControl);
-    this.app.use('/dashboard-data', dashboardRouter);
 
     this.app.get('/', (_req, res) => res.status(200).json({ message: 'API is working!' }));
 
+    this.app.use('/dashboard-data', dashboardRouter);
     this.app.use(ErrorMiddleware);
   }
 
