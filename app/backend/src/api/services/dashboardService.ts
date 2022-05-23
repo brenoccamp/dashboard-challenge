@@ -60,7 +60,7 @@ export default class DashboardService implements IDashboardService {
       include: [
         { model: SellersModel, as: 'seller', attributes: ['fullname'] },
         { model: ProductsServicesModel, as: 'product_service', attributes: ['name'] },
-        { model: CustomersModel, as: 'customer', attributes: ['name', 'city', 'state'] },
+        { model: CustomersModel, as: 'customer', attributes: ['name', 'state'] },
         { model: StoresModel, as: 'store', attributes: ['name', 'city', 'state'] },
       ],
     });

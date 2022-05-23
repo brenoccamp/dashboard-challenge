@@ -22,7 +22,7 @@ export interface IStore {
 export interface ICustomer {
   id: number;
   fullname: string;
-  city: string;
+  // city: string;
   state: string;
 }
 
