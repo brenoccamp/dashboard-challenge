@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '.';
+import StoresModel from './StoresModel';
 
 class SellersModel extends Model {
   declare id: number;
@@ -26,5 +27,7 @@ SellersModel.init({
   underscored: true,
   tableName: 'sellers',
 });
+
+SellersModel.belongsTo(StoresModel, { foreignKey: 'storeId', as: 'store' });
 
 export default SellersModel;
