@@ -3,13 +3,11 @@ import * as sinon from 'sinon';
 import chaiHttp = require('chai-http');
 import { Response } from 'superagent';
 import { app } from '../../app';
-import {
-  SellersModel,
-  ProductsServicesModel,
-  StoresModel,
-  CustomersModel,
-  SalesModel
-} from '../../database/models';
+import SellersModel from '../../database/models/SellersModel';
+import ProductsServicesModel from '../../database/models/ProductsServicesModel';
+import CustomersModel from '../../database/models/CustomersModel';
+import StoresModel from '../../database/models/StoresModel';
+import SalesModel from '../../database/models/SalesModel';
 import {
   mockedSellers,
   mockedProductsServices,
@@ -40,9 +38,9 @@ describe('(I&T Tests) Testing dashboard-data routes', () => {
       chaiHtppResponse = await chai
         .request(app)
         .get('/dashboard-data/sellers');
-      
+
       expect(chaiHtppResponse.status).to.be.equal(200);
-      expect(chaiHtppResponse.body).to.be.deep.equal(mockedSellers);
+      expect(chaiHtppResponse.body.data).to.be.deep.equal(mockedSellers);
     });
 
     it('Unexpected Error Case - Returns status 500 and a json containing "Internal server error"', async () => {
@@ -78,7 +76,7 @@ describe('(I&T Tests) Testing dashboard-data routes', () => {
         .get('/dashboard-data/products-services');
       
       expect(chaiHtppResponse.status).to.be.equal(200);
-      expect(chaiHtppResponse.body).to.be.deep.equal(mockedProductsServices);
+      expect(chaiHtppResponse.body.data).to.be.deep.equal(mockedProductsServices);
     });
 
     it('Unexpected Error Case - Returns status 500 and a json containing "Internal server error"', async () => {
@@ -114,7 +112,7 @@ describe('(I&T Tests) Testing dashboard-data routes', () => {
         .get('/dashboard-data/stores');
       
       expect(chaiHtppResponse.status).to.be.equal(200);
-      expect(chaiHtppResponse.body).to.be.deep.equal(mockedStores);
+      expect(chaiHtppResponse.body.data).to.be.deep.equal(mockedStores);
     });
 
     it('Unexpected Error Case - Returns status 500 and a json containing "Internal server error"', async () => {
@@ -150,7 +148,7 @@ describe('(I&T Tests) Testing dashboard-data routes', () => {
         .get('/dashboard-data/customers');
       
       expect(chaiHtppResponse.status).to.be.equal(200);
-      expect(chaiHtppResponse.body).to.be.deep.equal(mockedCustomers);
+      expect(chaiHtppResponse.body.data).to.be.deep.equal(mockedCustomers);
     });
 
     it('Unexpected Error Case - Returns status 500 and a json containing "Internal server error"', async () => {
@@ -173,7 +171,7 @@ describe('(I&T Tests) Testing dashboard-data routes', () => {
     before(() => {
       sinon
         .stub(SalesModel, 'findAll')
-        .resolves(mockedSales as SalesModel[]);
+        .resolves(mockedSales as unknown as SalesModel[]);
     });
 
     after(() => {
@@ -186,7 +184,7 @@ describe('(I&T Tests) Testing dashboard-data routes', () => {
         .get('/dashboard-data/sales');
       
       expect(chaiHtppResponse.status).to.be.equal(200);
-      expect(chaiHtppResponse.body).to.be.deep.equal(mockedSales);
+      expect(chaiHtppResponse.body.data).to.be.deep.equal(mockedSales);
     });
 
     it('Unexpected Error Case - Returns status 500 and a json containing "Internal server error"', async () => {

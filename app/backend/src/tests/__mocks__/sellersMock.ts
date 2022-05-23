@@ -1,12 +1,12 @@
-export const mockedSellers = [
+const mockedSellers = [
   {
     id: 1,
-    fullName: 'Seller 1',
-    storeId: 1
+    fullname: 'Seller 1',
+    storeId: 1,
   },
   {
     id: 2,
-    fullName: 'Seller 2',
+    fullname: 'Seller 2',
     storeId: 2
   }
 ];
