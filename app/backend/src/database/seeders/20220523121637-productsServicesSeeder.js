@@ -1,4 +1,4 @@
-const fakeStores = require('../databaseMocks/fakeStores');
+const fakeProductsServices = require('../databaseMocks/fakeProductsServices');
 
 module.exports = {
   up: async (queryInterface) => {
@@ -8,8 +8,8 @@ module.exports = {
      * Example:
      */
     await queryInterface.bulkInsert(
-      'stores',
-      fakeStores,
+      'products_services',
+      fakeProductsServices,
       {},
     );
   },
@@ -20,6 +20,6 @@ module.exports = {
      *
      * Example:
      */
-    await queryInterface.bulkDelete('stores', null, {});
+    await queryInterface.bulkDelete('products_services', null, {});
   },
 };
