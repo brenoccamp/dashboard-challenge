@@ -1,5 +1,9 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '.';
+import SellersModel from './SellersModel';
+import ProductsServicesModel from './ProductsServicesModel';
+import CustomersModel from './CustomersModel';
+import StoresModel from './StoresModel';
 
 class SalesModel extends Model {
   declare id: number;
@@ -26,14 +30,20 @@ SalesModel.init({
   customerId: { type: DataTypes.INTEGER, allowNull: false },
   storeId: { type: DataTypes.INTEGER, allowNull: false },
   soldAmount: { type: DataTypes.INTEGER, allowNull: false },
-  saleDate: { type: DataTypes.DATE, field: 'saleDate' },
+  saleDate: { type: DataTypes.DATE },
   updatedAt: DataTypes.DATE,
 }, {
   sequelize: db,
   modelName: 'SalesModel',
-  timestamps: true,
+  updatedAt: true,
+  createdAt: false,
   underscored: true,
   tableName: 'sales',
 });
+
+SalesModel.hasOne(SellersModel, { foreignKey: 'id', as: 'seller' });
+SalesModel.hasOne(ProductsServicesModel, { foreignKey: 'id', as: 'product_service' });
+SalesModel.hasOne(CustomersModel, { foreignKey: 'id', as: 'customer' });
+SalesModel.hasOne(StoresModel, { foreignKey: 'id', as: 'store' });
 
 export default SalesModel;
