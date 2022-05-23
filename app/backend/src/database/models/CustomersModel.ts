@@ -6,7 +6,7 @@ class CustomersModel extends Model {
 
   declare fullname: string;
 
-  declare city: string;
+  // declare city: string;
 
   declare state: string;
 
@@ -18,7 +18,7 @@ class CustomersModel extends Model {
 CustomersModel.init({
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, allowNull: false },
-  city: { type: DataTypes.STRING, allowNull: false },
+  // city: { type: DataTypes.STRING, allowNull: false },
   state: { type: DataTypes.STRING, allowNull: false },
   createdAt: DataTypes.DATE,
   updatedAt: DataTypes.DATE,
