@@ -56,7 +56,14 @@ export default class DashboardService implements IDashboardService {
   }
 
   async getAllSales(): Promise<ISale[]> {
-    const allSales = await this._salesModel.findAll();
+    const allSales = await this._salesModel.findAll({
+      include: [
+        { model: SellersModel, as: 'seller', attributes: ['fullname'] },
+        { model: ProductsServicesModel, as: 'product_service', attributes: ['name'] },
+        { model: CustomersModel, as: 'customer', attributes: ['name', 'city', 'state'] },
+        { model: StoresModel, as: 'store', attributes: ['name', 'city', 'state'] },
+      ],
+    });
 
     return allSales;
   }
