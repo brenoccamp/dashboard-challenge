@@ -9,10 +9,10 @@ const {
   mockedStores,
   mockedCustomers,
   mockedSales,
-} = require('../../__mocks__');
+} = require('../../../../build/tests/__mocks__/index');
 
-const dashboardService = new DashboardService();
-const dashboardController = new DashboardController(dashboardService);
+// const dashboardService = new DashboardService();
+// const dashboardController = new DashboardController(dashboardService);
 
 const errorObj = Error('Oops... Something was wrong!');
 
