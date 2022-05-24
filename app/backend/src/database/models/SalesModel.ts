@@ -41,9 +41,12 @@ SalesModel.init({
   tableName: 'sales',
 });
 
-SalesModel.hasOne(SellersModel, { foreignKey: 'id', as: 'seller' });
-SalesModel.hasOne(ProductsServicesModel, { foreignKey: 'id', as: 'product_service' });
-SalesModel.hasOne(CustomersModel, { foreignKey: 'id', as: 'customer' });
-SalesModel.hasOne(StoresModel, { foreignKey: 'id', as: 'store' });
+SalesModel.belongsTo(SellersModel, { foreignKey: 'sellerId', as: 'seller' });
+SalesModel.belongsTo(ProductsServicesModel, {
+  foreignKey: 'productServiceId',
+  as: 'product_service',
+});
+SalesModel.belongsTo(CustomersModel, { foreignKey: 'customerId', as: 'customer' });
+SalesModel.belongsTo(StoresModel, { foreignKey: 'storeId', as: 'store' });
 
 export default SalesModel;

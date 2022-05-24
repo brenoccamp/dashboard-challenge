@@ -59,7 +59,7 @@ export default class DashboardService implements IDashboardService {
     const allSales = await this._salesModel.findAll({
       include: [
         { model: SellersModel, as: 'seller', attributes: ['fullname'] },
-        { model: ProductsServicesModel, as: 'product_service', attributes: ['name'] },
+        { model: ProductsServicesModel, as: 'product_service', attributes: ['name', 'price'] },
         { model: CustomersModel, as: 'customer', attributes: ['name', 'state'] },
         { model: StoresModel, as: 'store', attributes: ['name', 'city', 'state'] },
       ],
