@@ -1,20 +1,19 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
-const DashboardService = require('../../../api/services/dashboardService');
+const DashboardService = require('../../../../build/api/services/dashboardService');
 const {
   mockedSellers,
   mockedProductsServices,
   mockedStores,
   mockedCustomers,
   mockedSales,
-} = require('../../__mocks__');
-import {
-  SellersModel,
-  ProductsServicesModel,
-  StoresModel,
-  CustomersModel,
-  SalesModel
-} from '../../../database/models';
+} = require('../../../../build/tests/__mocks__');
+const SellersModel = require('../../../../build/database/models/SellersModel');
+const ProductsServicesModel = require('../../../../build/database/models/ProductsServicesModel');
+const StoresModel = require('../../../../build/database/models/StoresModel');
+const CustomersModel = require('../../../../build/database/models/CustomersModel');
+const SalesModel = require('../../../../build/database/models/SalesModel');
+
 
 const dashboardService = new DashboardService();
 
