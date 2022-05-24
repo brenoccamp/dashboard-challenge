@@ -6,10 +6,11 @@
   "scripts": {
     "build": "npx tsc",
     "test": "mocha -r ts-node/register ./src/tests/*/*$NAME*.{test,spec}.ts -t 10000 --exit",
-    "test:mocha": "nyc --all --include services --include controllers mocha src/tests/unit_tests/**/*.js --exit",
+    "test:mocha": "nyc --all --include services --include controllers mocha src/tests/unit_tests/**/*.ts --exit",
     "dev": "ts-node ./src/server.ts",
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "prestart": "npm run build && npm run db:reset",
+    "test:unit": "mocha -r ts-node/register ./src/tests/unit_tests/**/*$NAME*.{test,spec}.ts -t 10000 --exit",
     "start": "node ."
   },
   "keywords": [],
