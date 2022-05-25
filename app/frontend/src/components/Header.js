@@ -1,10 +1,18 @@
-import React, { useContext } from 'react';
+/* eslint-disable no-magic-numbers */
+import React, { useContext, useEffect } from 'react';
 import '../styles/Header.css';
 import dashLogo from '../images/dashboard-logo.svg';
 import ApplicationContext from '../context/ApplicationContext';
+import getAllSales from '../services/requests';
 
 function Header() {
-  const { setYear } = useContext(ApplicationContext);
+  const {
+    setYear,
+    sales,
+    setSales,
+    isYearValid,
+    setFilteredSales,
+  } = useContext(ApplicationContext);
 
   const handleSelectedYear = ({ target }) => {
     const { value } = target;
@@ -12,9 +20,23 @@ function Header() {
     setYear(value);
   };
 
-  // const handleSubmit = ({ target }) => {
+  const getSales = async () => {
+    const { data, status } = await getAllSales();
+    if (status === 200) {
+      setSales(data);
+    }
+  };
 
-  // };
+  const handleSubmit = () => {
+    const validYear = isYearValid(sales.data);
+    if (!validYear) return alert('Por favor selecione um ano válido.');
+    // const filteredSales = getSales();
+    setFilteredSales();
+  };
+
+  useEffect(() => {
+    getSales();
+  }, []);
 
   return (
     <header className="header">
@@ -37,7 +59,7 @@ function Header() {
         />
         <button
           type="button"
-          // onClick={ (e) => handleSubmit(e) }
+          onClick={ handleSubmit }
         >
           Filtrar
         </button>
