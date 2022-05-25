@@ -7,8 +7,8 @@ import getAllSales from '../services/requests';
 
 function Header() {
   const {
-    year,
-    setYear,
+    selectedYear,
+    setSelectedYear,
     sales,
     setSales,
     isYearValid,
@@ -17,7 +17,7 @@ function Header() {
   const handleSelectedYear = ({ target }) => {
     const { value } = target;
 
-    setYear(value);
+    setSelectedYear(value);
   };
 
   const getSales = async () => {
@@ -33,7 +33,7 @@ function Header() {
     if (!validYear) return alert('Nenhuma venda encontrada nesse ano.');
 
     const salesByYear = sales.filter((sale) => sale.saleDate
-      .split('-')[0] === year);
+      .split('-')[0] === selectedYear);
 
     setSales(salesByYear);
   };
