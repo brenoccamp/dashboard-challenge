@@ -1,0 +1,25 @@
+.month-filters {
+  /* border: 1px solid blue; */
+  background-color: rgb(245, 245, 245);
+  min-width: 100vw;
+  margin-bottom: 5px;
+  border: 1px solid black;
+}
+
+.month-labels-container {
+  display: flex;
+  justify-content: space-around;
+  min-width: 100vw;
+}
+
+.month-checkbox-label {
+  align-items: center;
+  /* border: 1px solid gray; */
+  /* background-color: gray; */
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  margin: 0;
+}
