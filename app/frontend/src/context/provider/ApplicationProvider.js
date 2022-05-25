@@ -13,9 +13,12 @@ function ApplicationProvider({ children }) {
   const [currentFullDate, setCurrentFullDate] = useState(currentDate);
   const [stores, setStores] = useState([]);
   const [selectedStore, setSelectedStore] = useState('Cuiabá');
+  const [sellers, setSellers] = useState([]);
+  const [selectedSellers, setSelectedSellers] = useState([]);
+  const [sellersToDisplay, setSellersToDisplay] = useState([]);
 
   const isYearValid = (salesData) => salesData.some((sale) => sale.saleDate
-    .split('-')[0] === year);
+    .split('-')[0] === selectedYear);
 
   const contextValue = {
     selectedYear,
@@ -35,6 +38,12 @@ function ApplicationProvider({ children }) {
     setStores,
     selectedStore,
     setSelectedStore,
+    sellers,
+    setSellers,
+    selectedSellers,
+    setSelectedSellers,
+    sellersToDisplay,
+    setSellersToDisplay,
   };
 
   return (
