@@ -35,4 +35,5 @@ img {
   justify-content: space-around;
   max-width: 60%;
   min-width: 50%;
+  flex-wrap: wrap;
 }
