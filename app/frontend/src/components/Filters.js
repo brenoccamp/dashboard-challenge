@@ -31,7 +31,6 @@ function Fitlers() {
 
   const verifyEnableMonth = () => {
     if (Number(currentYear) > Number(selectedYear)) {
-      console.log('entrou');
       setCurrentMonth('12');
     } else if (Number(currentYear) === Number(selectedYear)) {
       setCurrentMonth(currentFullDate.split('/')[1]);

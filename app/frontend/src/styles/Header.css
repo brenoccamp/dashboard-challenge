@@ -76,3 +76,14 @@ input[type="number"] {
   max-width: 50px;
   margin: 5px
 }
+
+.store-container {
+  font-weight: bolder;
+  color: white;
+}
+
+.select-store {
+  background-color: white;
+  border-radius: 5px;
+  font-weight: bolder;
+}

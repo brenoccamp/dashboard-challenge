@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import '../styles/Header.css';
 import dashLogo from '../images/dashboard-logo.svg';
 import ApplicationContext from '../context/ApplicationContext';
-import getAllSales from '../services/requests';
+import { getAllSales, getAllStores } from '../services/requests';
 
 function Header() {
   const {
@@ -12,6 +12,9 @@ function Header() {
     sales,
     setSales,
     isYearValid,
+    stores,
+    setStores,
+    setSelectedStore,
   } = useContext(ApplicationContext);
 
   const handleSelectedYear = ({ target }) => {
@@ -24,6 +27,14 @@ function Header() {
     const { data: { data }, status } = await getAllSales();
     if (status === 200) {
       setSales(data);
+    }
+  };
+
+  const getStores = async () => {
+    const { data: { data }, status } = await getAllStores();
+
+    if (status === 200) {
+      setStores(data);
     }
   };
 
@@ -40,6 +51,7 @@ function Header() {
 
   useEffect(() => {
     getSales();
+    getStores();
   }, []);
 
   return (
@@ -53,6 +65,24 @@ function Header() {
       </div>
       <div className="page-title-container">
         <p>DASHBOARD DE VENDAS</p>
+      </div>
+      <div className="store-container">
+        <label htmlFor="stores">
+          <select
+            className="select-store"
+            id="stores"
+            onChange={ (event) => setSelectedStore(event.target.value) }
+          >
+            {stores.map((store, index) => (
+              <option
+                value={ store.city }
+                key={ index }
+              >
+                {`${store.name} - ${store.city}/${store.state}`}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
       <div className="year-filter">
         ANO
