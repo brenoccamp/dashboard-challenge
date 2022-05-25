@@ -55,6 +55,22 @@ input[type="number"] {
   margin: 0px 50px 0px 50px
 }
 
+.year-filter button {
+  background-color: rgb(60, 57, 255);
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-style: normal;
+  font-weight: bolder;
+  height: 1.4rem;
+  text-align: center;
+}
+
+.year-filter button:hover {
+  cursor: pointer;
+  background-color: rgb(14, 10, 248);
+}
+
 .input-year {
   border-radius: 5px;
   max-width: 50px;

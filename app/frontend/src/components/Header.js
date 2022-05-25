@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../styles/Header.css';
 import dashLogo from '../images/dashboard-logo.svg';
+import ApplicationContext from '../context/ApplicationContext';
 
 function Header() {
+  const { setYear } = useContext(ApplicationContext);
+
+  const handleSelectedYear = ({ target }) => {
+    const { value } = target;
+
+    setYear(value);
+  };
+
+  // const handleSubmit = ({ target }) => {
+
+  // };
+
   return (
     <header className="header">
       <div className="logo-name-slogan-container">
@@ -20,9 +33,11 @@ function Header() {
         <input
           type="number"
           className="input-year"
+          onChange={ (e) => handleSelectedYear(e) }
         />
         <button
           type="button"
+          // onClick={ (e) => handleSubmit(e) }
         >
           Filtrar
         </button>
