@@ -11,6 +11,8 @@ function ApplicationProvider({ children }) {
   const [currentMonth, setCurrentMonth] = useState(currentDate.split('/')[1]);
   const [currentYear, setCurrentYear] = useState(currentDate.split('/')[2]);
   const [currentFullDate, setCurrentFullDate] = useState(currentDate);
+  const [stores, setStores] = useState([]);
+  const [selectedStore, setSelectedStore] = useState('Cuiabá');
 
   const isYearValid = (salesData) => salesData.some((sale) => sale.saleDate
     .split('-')[0] === year);
@@ -29,6 +31,10 @@ function ApplicationProvider({ children }) {
     setCurrentMonth,
     currentFullDate,
     setCurrentFullDate,
+    stores,
+    setStores,
+    selectedStore,
+    setSelectedStore,
   };
 
   return (
