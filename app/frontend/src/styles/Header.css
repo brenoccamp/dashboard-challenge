@@ -1,3 +1,62 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .header {
-  background-color: blue;
+  align-items: center;
+  display: flex;
+  /* background-color: red; */
+  background-image: linear-gradient(to bottom right, rgba(0, 0, 255, 0.342), rgba(255, 0, 0, 0.404));
+  justify-content: space-between;
+  max-height: 15vh;
+}
+
+.logo-name-slogan-container {
+  align-items: center;
+  background-color: black;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  font-weight: bolder;
+  margin: 1rem;
+  padding: 10px 20px 10px 0;
+  max-width: 33%;
+}
+
+.name-slogan-container {
+  text-align: center;
+}
+
+.company-name {
+  font-size: 20px;
+}
+
+.company-slogan {
+  font-size: 10px;
+  text-align: center;
+}
+
+.page-title-container {
+  color: white;
+  font-weight: bolder;
+  font-size: 2rem;
+  max-width: 33%;
+}
+
+.year-filter {
+  color: white;
+  font-weight: bolder;
+  margin: 0px 50px 0px 50px
+}
+
+.input-year {
+  border-radius: 5px;
+  max-width: 50px;
+  margin: 5px
 }

@@ -1,4 +1,4 @@
-.year-income-card1 {
+.card1-year-income {
   border: 1px solid green;
   display: flex;
   flex-direction: column;
@@ -33,5 +33,6 @@ img {
   border-right: 1px solid black;
   display: flex;
   justify-content: space-around;
+  max-width: 60%;
   min-width: 50%;
 }
