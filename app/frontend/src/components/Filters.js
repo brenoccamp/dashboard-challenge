@@ -17,9 +17,15 @@ function Fitlers() {
     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
   const handleMonths = ({ target }) => {
+    let selectedMonths = [...months];
     let { value } = target;
+
     if (value.length === 1) value = `0${value}`;
-    const selectedMonths = [...months, value];
+    if (!months.includes(value)) {
+      selectedMonths = [...months, value];
+    } else {
+      selectedMonths = selectedMonths.filter((month) => month !== value);
+    }
     setMonths(selectedMonths);
   };
 

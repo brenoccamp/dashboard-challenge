@@ -59,6 +59,7 @@ function Header() {
         <input
           type="number"
           className="input-year"
+          defaultValue={ selectedYear }
           onChange={ (e) => handleSelectedYear(e) }
         />
         <button

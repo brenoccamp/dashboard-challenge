@@ -5,7 +5,7 @@ import ApplicationContext from '../ApplicationContext';
 function ApplicationProvider({ children }) {
   const currentDate = new Date().toLocaleDateString();
 
-  const [selectedYear, setSelectedYear] = useState('2022');
+  const [selectedYear, setSelectedYear] = useState('2021');
   const [sales, setSales] = useState([]);
   const [months, setMonths] = useState([]);
   const [currentMonth, setCurrentMonth] = useState(currentDate.split('/')[1]);
