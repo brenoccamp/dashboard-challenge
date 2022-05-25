@@ -5,7 +5,7 @@ import coinsImg from '../images/coins.svg';
 
 function YearIncome({ totalIncome }) {
   return (
-    <div className="year-income-card1">
+    <div className="card1-year-income">
       <div className="card-header">
         <p className="card-title">Receita Total do Ano</p>
         <p className="card-title">Meta Anual</p>
@@ -15,6 +15,7 @@ function YearIncome({ totalIncome }) {
         <div className="img-and-income">
           <img src={ coinsImg } alt="yellow-coins" />
           {totalIncome}
+          &nbsp;
         </div>
         <div>
           {/* CHART HERE */}
