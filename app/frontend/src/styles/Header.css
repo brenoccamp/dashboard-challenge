@@ -52,7 +52,7 @@ input[type="number"] {
 .year-filter {
   color: white;
   font-weight: bolder;
-  margin: 0px 50px 0px 50px
+  margin: 0px 50px 0px 30px
 }
 
 .year-filter button {
@@ -62,7 +62,7 @@ input[type="number"] {
   color: white;
   font-style: normal;
   font-weight: bolder;
-  height: 1.4rem;
+  height: 2rem;
   text-align: center;
 }
 
@@ -87,4 +87,38 @@ input[type="number"] {
   background-color: white;
   border-radius: 5px;
   font-weight: bolder;
+}
+
+.select-sellers-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.select-sellers-container p {
+  color: white;
+  font-weight: bolder;
+}
+
+.select-sellers-container img {
+  width: 20px;
+  height: 20px;
+}
+
+.sellers-btn {
+  align-items: center;
+  background-color: none;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: none;
+}
+
+.sellers-btn:hover {
+  cursor: pointer;
+}
+
+.show {
+  display: block !important;
 }
