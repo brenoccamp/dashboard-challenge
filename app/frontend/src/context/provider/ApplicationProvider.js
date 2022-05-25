@@ -5,7 +5,7 @@ import ApplicationContext from '../ApplicationContext';
 function ApplicationProvider({ children }) {
   const [year, setYear] = useState('2020');
   const [sales, setSales] = useState([]);
-  const [filteredSales, setFilteredSales] = useState([]);
+  // const [filteredSales, setFilteredSales] = useState([]);
 
   const isYearValid = (salesData) => salesData.some((sale) => sale.saleDate
     .split('-')[0] === year);
@@ -16,8 +16,8 @@ function ApplicationProvider({ children }) {
     sales,
     setSales,
     isYearValid,
-    filteredSales,
-    setFilteredSales,
+    // filteredSales,
+    // setFilteredSales,
   };
 
   return (

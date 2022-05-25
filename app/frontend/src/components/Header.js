@@ -7,11 +7,11 @@ import getAllSales from '../services/requests';
 
 function Header() {
   const {
+    year,
     setYear,
     sales,
     setSales,
     isYearValid,
-    setFilteredSales,
   } = useContext(ApplicationContext);
 
   const handleSelectedYear = ({ target }) => {
@@ -21,17 +21,21 @@ function Header() {
   };
 
   const getSales = async () => {
-    const { data, status } = await getAllSales();
+    const { data: { data }, status } = await getAllSales();
     if (status === 200) {
       setSales(data);
     }
   };
 
   const handleSubmit = () => {
-    const validYear = isYearValid(sales.data);
-    if (!validYear) return alert('Por favor selecione um ano válido.');
-    // const filteredSales = getSales();
-    setFilteredSales();
+    getSales();
+    const validYear = isYearValid(sales);
+    if (!validYear) return alert('Nenhuma venda encontrada nesse ano.');
+
+    const salesByYear = sales.filter((sale) => sale.saleDate
+      .split('-')[0] === year);
+
+    setSales(salesByYear);
   };
 
   useEffect(() => {
