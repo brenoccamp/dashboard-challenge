@@ -1,0 +1,37 @@
+.year-income-card1 {
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+  max-width: 33%;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-title {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0px 1rem;
+  text-decoration: underline;
+}
+
+.content-year-income-goal {
+  display: flex;
+  /* justify-content: space-between; */
+  min-width: 100%;
+}
+
+img {
+  width: 5rem;
+  height: 3rem;
+}
+
+.img-and-income {
+  align-items: center;
+  border-right: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  min-width: 50%;
+}

@@ -6,9 +6,9 @@ function ApplicationProvider({ children }) {
   const contextValue = {};
 
   return (
-    <ApplicationContext value={ contextValue }>
+    <ApplicationContext.Provider value={ contextValue }>
       {children}
-    </ApplicationContext>
+    </ApplicationContext.Provider>
   );
 }
 
