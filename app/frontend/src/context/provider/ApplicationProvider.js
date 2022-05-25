@@ -16,6 +16,7 @@ function ApplicationProvider({ children }) {
   const [sellers, setSellers] = useState([]);
   const [selectedSellers, setSelectedSellers] = useState([]);
   const [sellersToDisplay, setSellersToDisplay] = useState([]);
+  const [chooseSeller, setChooseSeller] = useState(false);
 
   const isYearValid = (salesData) => salesData.some((sale) => sale.saleDate
     .split('-')[0] === selectedYear);
@@ -44,6 +45,8 @@ function ApplicationProvider({ children }) {
     setSelectedSellers,
     sellersToDisplay,
     setSellersToDisplay,
+    chooseSeller,
+    setChooseSeller,
   };
 
   return (

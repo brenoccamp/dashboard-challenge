@@ -1,7 +1,9 @@
+/* eslint-disable react/jsx-max-depth */
 /* eslint-disable no-magic-numbers */
 import React, { useContext, useEffect } from 'react';
 import '../styles/Header.css';
 import dashLogo from '../images/dashboard-logo.svg';
+import sellersImg from '../images/sellers.svg';
 import ApplicationContext from '../context/ApplicationContext';
 import { getAllSales, getAllStores } from '../services/requests';
 
@@ -15,6 +17,8 @@ function Header() {
     stores,
     setStores,
     setSelectedStore,
+    chooseSeller,
+    setChooseSeller,
   } = useContext(ApplicationContext);
 
   const handleSelectedYear = ({ target }) => {
@@ -54,8 +58,40 @@ function Header() {
     getStores();
   }, []);
 
+  const classNameModal = chooseSeller
+    ? 'modal show'
+    : 'modal';
+
   return (
     <header className="header">
+      <div className={ classNameModal } tabIndex="-1">
+        <div className="modal-dialog modal-dialog-scrollable">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Selecione os(as) Vendedores(as)</h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              />
+            </div>
+            <div className="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" className="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="logo-name-slogan-container">
         <img src={ dashLogo } alt="company-logo" />
         <div className="name-slogan-container">
@@ -83,6 +119,16 @@ function Header() {
             ))}
           </select>
         </label>
+      </div>
+      <div className="select-sellers-container">
+        <p>Vendedores</p>
+        <button
+          type="button"
+          className="sellers-btn"
+          onClick={ () => setChooseSeller(true) }
+        >
+          <img src={ sellersImg } alt="sellers-icon-svg" />
+        </button>
       </div>
       <div className="year-filter">
         ANO
