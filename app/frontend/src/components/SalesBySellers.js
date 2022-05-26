@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import ApplicationContext from '../context/ApplicationContext';
-import '../styles/YearIncome.css';
+import '../styles/SalesBySellers.css';
 
 function SalesBySellers() {
   const {

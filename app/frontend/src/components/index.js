@@ -5,6 +5,7 @@ import Sellers from './Sellers';
 import IncomesByFilter from './IncomesByFilter';
 import MonthlySales from './MonthlySales';
 import SalesBySellers from './SalesBySellers';
+import ComparingPreviousYear from './ComapringPreviousYear';
 
 export {
   YearIncome,
@@ -14,4 +15,5 @@ export {
   IncomesByFilter,
   MonthlySales,
   SalesBySellers,
+  ComparingPreviousYear,
 };

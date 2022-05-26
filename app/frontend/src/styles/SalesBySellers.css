@@ -1,0 +1,31 @@
+.card {
+  display: flex;
+  border: 1px solid black;
+  padding: 0 0 2px 5px;
+  max-width: 40%;
+  background-color: none;
+}
+
+.monthly-sales-container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.month-value {
+  flex: 165px;
+}
+
+.p-value {
+  margin: 0;
+}
+
+.card-header {
+  justify-content: center;
+  display: flex;
+  background-color: rgba(0,0,0,.03);
+}
+
+.p-title {
+  text-decoration: underline;
+}
