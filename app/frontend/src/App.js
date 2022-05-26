@@ -9,6 +9,7 @@ import {
   IncomesByFilter,
   MonthlySales,
   SalesBySellers,
+  ComparingPreviousYear,
 } from './components/index';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         </div>
         <div className="row2">
           <SalesBySellers />
+          <ComparingPreviousYear />
         </div>
       </div>
     </ApplicationProvider>
