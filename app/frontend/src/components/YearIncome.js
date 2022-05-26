@@ -1,47 +1,21 @@
 /* eslint-disable no-magic-numbers */
 import React, { useContext, useEffect } from 'react';
 import '../styles/YearIncome.css';
-import Chart from 'react-apexcharts';
 import coinsImg from '../images/coins.svg';
 import ApplicationContext from '../context/ApplicationContext';
 
 function YearIncome() {
   const {
     months,
-    calculateTotalIncomes,
+    calculateTotalYearIncomes,
+    selectedYear,
     totalYearIncomes,
+    calculateAnnualGoal,
   } = useContext(ApplicationContext);
 
-  const state = {
-    options: {
-      colors: ['#546E7A', '#008000'],
-      plotOptions: {
-        pie: {
-          expandOnClick: false,
-          donut: {
-            labels: {
-              show: true,
-              total: {
-                show: true,
-                showAlways: true,
-              },
-            },
-          },
-        },
-      },
-      legend: {
-        show: false,
-      },
-    },
-    series: [5, 10],
-    labels: ['Vendas', 'Meta Anual'],
-  };
-
-  const series = [5, 10];
-
   useEffect(() => {
-    calculateTotalIncomes();
-  }, [months]);
+    calculateTotalYearIncomes();
+  }, [months, selectedYear]);
 
   return (
     <div className="card1-year-income">
@@ -54,15 +28,11 @@ function YearIncome() {
         <div className="img-and-income">
           <img src={ coinsImg } alt="yellow-coins" />
           {totalYearIncomes}
+          &nbsp;R$
           &nbsp;
         </div>
-        <div>
-          <Chart
-            options={ state.options }
-            series={ series }
-            type="donut"
-            width="180"
-          />
+        <div className="annual-goal">
+          {calculateAnnualGoal()}
         </div>
       </div>
     </div>

@@ -37,3 +37,11 @@ img {
   min-width: 50%;
   flex-wrap: wrap;
 }
+
+.annual-goal {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
