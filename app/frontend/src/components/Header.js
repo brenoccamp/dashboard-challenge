@@ -35,7 +35,7 @@ function Header() {
 
   const getSales = async () => {
     const { data: { data }, status } = await getAllSales();
-
+    console.log(data[0]);
     if (status === 200) {
       setSales(data);
     }
