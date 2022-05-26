@@ -8,10 +8,8 @@ function Sellers() {
   const {
     sellers,
     setSellers,
-    // selectedSellers,
-    // setSelectedSellers,
-    // sellersToDisplay,
-    // setSellersToDisplay,
+    selectedSellers,
+    selectedStore,
   } = useContext(ApplicationContext);
 
   const getSellers = async () => {
@@ -21,28 +19,26 @@ function Sellers() {
     }
   };
 
-  // const isSellersSelected = () => {
-  //   if (selectedSellers.length) {
-  //     console.log('lenght');
-  //     setSellersToDisplay(selectedSellers);
-  //   } else {
-  //     console.log('nolength', sellers);
-  //     setSellersToDisplay(sellers);
-  //   }
-  //   console.log('is? ', sellersToDisplay);
-  // };
-
   useEffect(() => {
     getSellers();
   }, []);
+
+  const sellersToShowOnCarousel = () => {
+    const sellersByStore = sellers
+      .filter(({ storeId }) => String(storeId) === selectedStore.split('-').pop());
+    if (selectedSellers.length) {
+      return sellers.filter((seller) => selectedSellers.includes(String(seller.id)));
+    }
+    return sellersByStore;
+  };
 
   return (
     <div className="sellers-carousel-container">
       <Marquee className="sellers-carousel">
         {
-          sellers.map((seller) => (
+          sellersToShowOnCarousel().map((seller) => (
             <h4 key={ seller.id } style={ { margin: '0px' } }>
-              {`${seller.fullname.split('/')[0]}`}
+              {`${seller.fullname}`}
               &nbsp;*&nbsp;
             </h4>
           ))
