@@ -19,6 +19,7 @@ function ApplicationProvider({ children }) {
   const [chooseSeller, setChooseSeller] = useState(false);
   const [filteredSales, setFilteredSales] = useState([]);
   const [totalYearIncomes, setTotalYearIncomes] = useState(0);
+  const [totalncomesByFilter, setIncomesByFilter] = useState(0);
 
   const isYearValid = (salesData) => salesData.some((sale) => sale.saleDate
     .split('-')[0] === selectedYear);
@@ -38,13 +39,39 @@ function ApplicationProvider({ children }) {
     return treatedSales;
   }
 
-  const calculateTotalIncomes = () => {
-    const totalIncomes = buildSelectedSalesArray().reduce((incomeSum, currSale) => {
+  const calculateTotalYearIncomes = () => {
+    const totalIncomes = sales.reduce((incomeSum, currSale) => {
       incomeSum += (currSale.product_service.price * currSale.soldAmount);
       return incomeSum;
     }, 0);
 
     setTotalYearIncomes(totalIncomes);
+  };
+
+  const calculateIncomesByFilter = () => {
+    const annualIncomesByFilter = buildSelectedSalesArray()
+      .reduce((incomeSum, currSale) => {
+        incomeSum += (currSale.product_service.price * currSale.soldAmount);
+        return incomeSum;
+      }, 0);
+
+    setIncomesByFilter(annualIncomesByFilter);
+  };
+
+  const calculateAnnualGoal = () => {
+    const previousYear = selectedYear - 1;
+    const previousYearSales = filteredSales.filter((sale) => sale.saleDate
+      .split('-')[0] === previousYear)
+      .sort((a, b) => a.saleDate.split('-')[1] - b.saleDate.split('-')[1]);
+
+    const previousYearIncome = previousYearSales.reduce((incomeSum, currSale) => {
+      incomeSum += (currSale.product_service.price * currSale.soldAmount);
+      return incomeSum;
+    }, 0);
+
+    const estimatedGrowth = 1.20;
+
+    return (previousYearIncome * estimatedGrowth);
   };
 
   const contextValue = {
@@ -78,7 +105,11 @@ function ApplicationProvider({ children }) {
     buildSelectedSalesArray,
     totalYearIncomes,
     setTotalYearIncomes,
-    calculateTotalIncomes,
+    calculateTotalYearIncomes,
+    calculateAnnualGoal,
+    calculateIncomesByFilter,
+    totalncomesByFilter,
+    setIncomesByFilter,
   };
 
   return (

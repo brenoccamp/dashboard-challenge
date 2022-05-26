@@ -24,6 +24,7 @@ function Header() {
     selectedStore,
     selectedSellers,
     calculateTotalIncomes,
+    calculateIncomesByFilter,
   } = useContext(ApplicationContext);
 
   const handleSelectedYear = ({ target }) => {
@@ -34,6 +35,7 @@ function Header() {
 
   const getSales = async () => {
     const { data: { data }, status } = await getAllSales();
+
     if (status === 200) {
       setSales(data);
     }
@@ -122,6 +124,7 @@ function Header() {
                 onClick={ () => {
                   setChooseSeller(false);
                   calculateTotalIncomes();
+                  calculateIncomesByFilter();
                 } }
               >
                 Fechar
