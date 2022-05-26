@@ -7,6 +7,7 @@ import {
   Fitlers, Header,
   Sellers,
   IncomesByFilter,
+  MonthlySales,
 } from './components/index';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <div className="row1">
           <YearIncome />
           <IncomesByFilter />
+          <MonthlySales />
         </div>
       </div>
     </ApplicationProvider>

@@ -6,14 +6,14 @@ function IncomesByFilter() {
   const {
     calculateIncomesByFilter,
     selectedYear,
-    sellersSelected,
+    selectedSellers,
     months,
     totalncomesByFilter,
   } = useContext(ApplicationContext);
 
   useEffect(() => {
     calculateIncomesByFilter();
-  }, [selectedYear, sellersSelected, months]);
+  }, [selectedYear, selectedSellers, months]);
 
   return (
     <div className="card1-year-income">

@@ -23,7 +23,7 @@ function Header() {
     sellers,
     selectedStore,
     selectedSellers,
-    calculateTotalIncomes,
+    calculateTotalYearIncomes,
     calculateIncomesByFilter,
   } = useContext(ApplicationContext);
 
@@ -123,7 +123,7 @@ function Header() {
                 className="btn btn-primary"
                 onClick={ () => {
                   setChooseSeller(false);
-                  calculateTotalIncomes();
+                  calculateTotalYearIncomes();
                   calculateIncomesByFilter();
                 } }
               >

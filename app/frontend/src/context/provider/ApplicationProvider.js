@@ -74,6 +74,24 @@ function ApplicationProvider({ children }) {
     return (previousYearIncome * estimatedGrowth);
   };
 
+  const salesByMonth = () => {
+    const monthlySales = sales.reduce((acc, currSale) => {
+      if (!acc[currSale.saleDate.split('-')[1]]) {
+        acc[currSale.saleDate.split('-')[1]] = Number(currSale.product_service.price)
+        * Number(currSale.soldAmount);
+      } else {
+        const previousValue = Number(acc[currSale.saleDate.split('-')[1]]);
+
+        acc[currSale.saleDate.split('-')[1]] = Number(currSale.product_service.price)
+          * Number(currSale.soldAmount) + previousValue;
+      }
+
+      return acc;
+    }, {});
+
+    return monthlySales;
+  };
+
   const contextValue = {
     selectedYear,
     setSelectedYear,
@@ -110,6 +128,7 @@ function ApplicationProvider({ children }) {
     calculateIncomesByFilter,
     totalncomesByFilter,
     setIncomesByFilter,
+    salesByMonth,
   };
 
   return (
