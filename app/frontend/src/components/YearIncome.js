@@ -1,11 +1,17 @@
 /* eslint-disable no-magic-numbers */
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import '../styles/YearIncome.css';
 import Chart from 'react-apexcharts';
 import coinsImg from '../images/coins.svg';
+import ApplicationContext from '../context/ApplicationContext';
 
-function YearIncome({ totalIncome }) {
+function YearIncome() {
+  const {
+    months,
+    calculateTotalIncomes,
+    totalYearIncomes,
+  } = useContext(ApplicationContext);
+
   const state = {
     options: {
       colors: ['#546E7A', '#008000'],
@@ -33,6 +39,10 @@ function YearIncome({ totalIncome }) {
 
   const series = [5, 10];
 
+  useEffect(() => {
+    calculateTotalIncomes();
+  }, [months]);
+
   return (
     <div className="card1-year-income">
       <div className="card-header">
@@ -43,7 +53,7 @@ function YearIncome({ totalIncome }) {
       <div className="content-year-income-goal">
         <div className="img-and-income">
           <img src={ coinsImg } alt="yellow-coins" />
-          {totalIncome}
+          {totalYearIncomes}
           &nbsp;
         </div>
         <div>
@@ -51,16 +61,12 @@ function YearIncome({ totalIncome }) {
             options={ state.options }
             series={ series }
             type="donut"
-            width="200"
+            width="180"
           />
         </div>
       </div>
     </div>
   );
 }
-
-YearIncome.propTypes = {
-  totalIncome: PropTypes.number.isRequired,
-};
 
 export default YearIncome;

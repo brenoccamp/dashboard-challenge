@@ -23,6 +23,7 @@ function Header() {
     sellers,
     selectedStore,
     selectedSellers,
+    calculateTotalIncomes,
   } = useContext(ApplicationContext);
 
   const handleSelectedYear = ({ target }) => {
@@ -95,13 +96,6 @@ function Header() {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">Selecione os(as) Vendedores(as)</h5>
-              {/* <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-                onClick={ () => setChooseSeller(false) }
-              /> */}
             </div>
             <div className="modal-body">
               {showSellersOnModal().map((seller) => (
@@ -125,7 +119,10 @@ function Header() {
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={ () => setChooseSeller(false) }
+                onClick={ () => {
+                  setChooseSeller(false);
+                  calculateTotalIncomes();
+                } }
               >
                 Fechar
               </button>

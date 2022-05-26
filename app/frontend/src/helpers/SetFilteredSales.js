@@ -1,22 +1,11 @@
-import React, { useContext } from 'react';
-import ApplicationContext from '../context/ApplicationContext';
+// const calculateTotalIncomes = (sales) => {
+//   console.log('filteredSales: ', sales);
+//   const totalIncomes = sales.reduce((incomeSum, currSale) => {
+//     incomeSum += (currSale.product_service.price * currSale.soldAmount);
+//     return incomeSum;
+//   }, 0);
 
-function SetFilteredSales() {
-  const {
-    months,
-    setSales,
-    sales,
-    sellers
-  } = useContext(ApplicationContext);
+//   return totalIncomes;
+// };
 
-  let filteredSales = [];
-
-  if (months.length) {
-    sales.forEach((sale) => {
-      const currentSaleMonth = sale.saleDate.split('-')[1];
-      if (months.includeS(currentSaleMonth)) filteredSales = [...filteredSales, sale];
-    });
-  }
-}
-
-export default SetFilteredSales;
+// export default calculateTotalIncomes;

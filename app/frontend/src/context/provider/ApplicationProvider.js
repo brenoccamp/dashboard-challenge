@@ -17,9 +17,35 @@ function ApplicationProvider({ children }) {
   const [selectedSellers, setSelectedSellers] = useState([]);
   const [sellersToDisplay, setSellersToDisplay] = useState([]);
   const [chooseSeller, setChooseSeller] = useState(false);
+  const [filteredSales, setFilteredSales] = useState([]);
+  const [totalYearIncomes, setTotalYearIncomes] = useState(0);
 
   const isYearValid = (salesData) => salesData.some((sale) => sale.saleDate
     .split('-')[0] === selectedYear);
+
+  function buildSelectedSalesArray() {
+    let treatedSales = sales;
+
+    treatedSales = sales.filter((sale) => sale.saleDate.split('-')[0] === selectedYear);
+    if (selectedSellers.length) {
+      treatedSales = treatedSales
+        .filter((sale) => selectedSellers.includes(String(sale.sellerId)));
+    }
+    if (months.length) {
+      treatedSales = treatedSales
+        .filter((sale) => months.includes(sale.saleDate.split('-')[1]));
+    }
+    return treatedSales;
+  }
+
+  const calculateTotalIncomes = () => {
+    const totalIncomes = buildSelectedSalesArray().reduce((incomeSum, currSale) => {
+      incomeSum += (currSale.product_service.price * currSale.soldAmount);
+      return incomeSum;
+    }, 0);
+
+    setTotalYearIncomes(totalIncomes);
+  };
 
   const contextValue = {
     selectedYear,
@@ -47,6 +73,12 @@ function ApplicationProvider({ children }) {
     setSellersToDisplay,
     chooseSeller,
     setChooseSeller,
+    filteredSales,
+    setFilteredSales,
+    buildSelectedSalesArray,
+    totalYearIncomes,
+    setTotalYearIncomes,
+    calculateTotalIncomes,
   };
 
   return (

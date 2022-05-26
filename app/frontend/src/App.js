@@ -12,7 +12,7 @@ function App() {
       <Fitlers />
       <div className="App">
         <div className="row1">
-          <YearIncome totalIncome="999.560.390,00" />
+          <YearIncome />
         </div>
       </div>
     </ApplicationProvider>

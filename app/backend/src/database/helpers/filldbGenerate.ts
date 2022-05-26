@@ -20,7 +20,7 @@ const generateCustomers = (numberOfCustomers: number): void => {
 
     fakeCustomers.push(newCustomer);
   }
-  console.log(JSON.stringify(fakeCustomers, null, '\t'));
+  // console.log(JSON.stringify(fakeCustomers, null, '\t'));
 };
 
 const generateSales = (numberOfSales: number): void => {
@@ -41,7 +41,7 @@ const generateSales = (numberOfSales: number): void => {
 
     fakeSales.push(newSale);
   }
-  console.log(JSON.stringify(fakeSales, null, '\t'));
+  // console.log(JSON.stringify(fakeSales, null, '\t'));
 };
 
 export {
