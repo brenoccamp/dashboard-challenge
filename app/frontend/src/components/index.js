@@ -4,6 +4,7 @@ import Header from './Header';
 import Sellers from './Sellers';
 import IncomesByFilter from './IncomesByFilter';
 import MonthlySales from './MonthlySales';
+import SalesBySellers from './SalesBySellers';
 
 export {
   YearIncome,
@@ -12,4 +13,5 @@ export {
   Sellers,
   IncomesByFilter,
   MonthlySales,
+  SalesBySellers,
 };

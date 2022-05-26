@@ -8,6 +8,7 @@ import {
   Sellers,
   IncomesByFilter,
   MonthlySales,
+  SalesBySellers,
 } from './components/index';
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
           <YearIncome />
           <IncomesByFilter />
           <MonthlySales />
+        </div>
+        <div className="row2">
+          <SalesBySellers />
         </div>
       </div>
     </ApplicationProvider>
