@@ -3,6 +3,8 @@ import Fitlers from './Filters';
 import Header from './Header';
 import Sellers from './Sellers';
 import IncomesByFilter from './IncomesByFilter';
+import MonthlySales from './MonthlySales';
+import SalesBySellers from './SalesBySellers';
 
 export {
   YearIncome,
@@ -10,4 +12,6 @@ export {
   Header,
   Sellers,
   IncomesByFilter,
+  MonthlySales,
+  SalesBySellers,
 };

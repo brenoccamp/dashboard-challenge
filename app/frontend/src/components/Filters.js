@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import ApplicationContext from '../context/ApplicationContext';
 import '../styles/Filters.css';
+import yearMonths from '../services/monthsArray';
 
 function Fitlers() {
   const {
@@ -12,9 +13,6 @@ function Fitlers() {
     setCurrentMonth,
     currentFullDate,
   } = useContext(ApplicationContext);
-
-  const optionalMonths = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
   const handleMonths = ({ target }) => {
     let selectedMonths = [...months];
@@ -46,7 +44,7 @@ function Fitlers() {
   return (
     <div className="month-filters">
       <div className="month-labels-container">
-        {optionalMonths.map((month, index) => (
+        {yearMonths.map((month, index) => (
           <label
             className="month-checkbox-label"
             htmlFor={ `checkbox-${index}` }
