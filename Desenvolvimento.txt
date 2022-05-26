@@ -1,0 +1,13 @@
+Durante o desenvolvimento, escolhi utilizar NodeJs e Express para a construção do backend.
+O Banco foi construído com MySQL utilizei o ORM Sequelize para mapeá-lo e ralizar as queries, assim evitando
+injeção de dependência e dando mais agilidade e segurança para a aplicação. O banco foi populado através da função
+filldbGenerate.ts, porém não me atentei ao fato de criar as datas aleatoriamente, portanto, todas as vendas
+estão como realizadas na mesma data. Quando percebi já estava em cima da hora da entrega.
+As rotas do back são apenas rotas GET, pois optei por deixar a responsabilidade da lógica no front, tornando assim
+a API mais genérica e tentando me basear na constraint Arquitetura Cliente-Servidor do padrão REST, onde a respon-
+sabilidade da manipulação dos dados fica com o cliente (no caso o front).
+Os testes de integração do backend foram realizados utilizando mocha, chai(chaiHttp) e sinon.
+No front utilizei React e Context(subestimei o volume de dados do estado e achei que Redux seria exagero).
+Dividi o front em componentes e tentei construí-lo com cards para gerar o dashboard. Ele ficou incompleto, tendo
+apenas as funcionalidades dos cards que mostra a receita total do ano, a receita total por mes e a receita total
+por vendedores selecionados. Não consegui terminar o resto pois acabei planejando mal o meu tempo.
