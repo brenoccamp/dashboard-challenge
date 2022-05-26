@@ -122,3 +122,12 @@ input[type="number"] {
 .show {
   display: block !important;
 }
+
+.seller-label-checkbox {
+  align-items: center;
+  display: flex;
+  margin: 5px;
+}
+.seller-label-checkbox input {
+  margin-right: 5px;
+}
