@@ -41,7 +41,9 @@ function ApplicationProvider({ children }) {
 
   const calculateTotalYearIncomes = () => {
     const totalIncomes = sales.reduce((incomeSum, currSale) => {
-      incomeSum += (currSale.product_service.price * currSale.soldAmount);
+      if (String(currSale.storeId) === selectedStore.split('-')[1]) {
+        incomeSum += (currSale.product_service.price * currSale.soldAmount);
+      }
       return incomeSum;
     }, 0);
 

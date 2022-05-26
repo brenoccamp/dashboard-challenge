@@ -7,10 +7,10 @@ function SalesBySellers() {
     selectedSellers,
     sellers,
     sales,
+    selectedStore,
   } = useContext(ApplicationContext);
 
   const salesBySeller = (seller) => {
-    console.log(seller);
     const totalIncomeBySeller = sales.reduce((acc, currSale) => {
       if (Number(currSale.sellerId) === Number(seller.id)) {
         acc += Number(currSale.product_service.price) * Number(currSale.soldAmount);
@@ -22,7 +22,6 @@ function SalesBySellers() {
   };
 
   useEffect(() => {
-    console.log(selectedSellers);
   }, [selectedSellers]);
 
   return (
@@ -31,11 +30,16 @@ function SalesBySellers() {
         <p>Vendas por Vendedor</p>
       </div>
       <div>
-        {sellers.filter((seller) => selectedSellers.includes(String(seller.id)))
+        {sellers.filter((seller) => {
+          if (selectedSellers.length) {
+            return selectedSellers.includes(String(seller.id));
+          }
+          return String(seller.storeId) === selectedStore.split('-')[1];
+        })
           .map((filteredSeller) => (
             <div key={ filteredSeller.id }>
               {filteredSeller.fullname}
-              &nbsp;
+              :&nbsp;
               {`${salesBySeller(filteredSeller)} R$`}
             </div>
           ))}
