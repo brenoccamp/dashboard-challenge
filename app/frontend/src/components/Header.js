@@ -11,14 +11,18 @@ function Header() {
   const {
     selectedYear,
     setSelectedYear,
-    sales,
-    setSales,
-    isYearValid,
-    stores,
     setStores,
     setSelectedStore,
-    chooseSeller,
+    setSales,
     setChooseSeller,
+    setSelectedSellers,
+    sales,
+    isYearValid,
+    stores,
+    chooseSeller,
+    sellers,
+    selectedStore,
+    selectedSellers,
   } = useContext(ApplicationContext);
 
   const handleSelectedYear = ({ target }) => {
@@ -53,6 +57,28 @@ function Header() {
     setSales(salesByYear);
   };
 
+  const showSellersOnModal = () => {
+    const availableSellers = sellers
+      .filter((seller) => Number(seller.storeId) === Number(selectedStore.split('-')[1]));
+
+    return availableSellers;
+  };
+
+  const defineSellers = ({ target }) => {
+    const { value } = target;
+    let newSelectedSellers = [];
+
+    if (selectedSellers.includes(value)) {
+      newSelectedSellers = selectedSellers
+        .filter((sellerId) => Number(sellerId) !== Number(value));
+
+      return setSelectedSellers(newSelectedSellers);
+    }
+
+    newSelectedSellers = [...selectedSellers, value];
+    setSelectedSellers(newSelectedSellers);
+  };
+
   useEffect(() => {
     getSales();
     getStores();
@@ -69,25 +95,40 @@ function Header() {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">Selecione os(as) Vendedores(as)</h5>
-              <button
+              {/* <button
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-              />
+                onClick={ () => setChooseSeller(false) }
+              /> */}
             </div>
             <div className="modal-body">
-              <p>Modal body text goes here.</p>
+              {showSellersOnModal().map((seller) => (
+                <label
+                  className="seller-label-checkbox"
+                  htmlFor={ `checkbox-${seller.fullname}` }
+                  key={ seller.id }
+                >
+                  <input
+                    type="checkbox"
+                    value={ seller.id }
+                    name={ seller }
+                    id={ `checkbox-${seller.fullname}` }
+                    onClick={ (event) => defineSellers(event) }
+                  />
+                  <p value={ seller.fullname }>{seller.fullname}</p>
+                </label>
+              ))}
             </div>
             <div className="modal-footer">
               <button
                 type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
+                className="btn btn-primary"
+                onClick={ () => setChooseSeller(false) }
               >
-                Close
+                Fechar
               </button>
-              <button type="button" className="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
@@ -107,11 +148,14 @@ function Header() {
           <select
             className="select-store"
             id="stores"
-            onChange={ (event) => setSelectedStore(event.target.value) }
+            onChange={ (event) => {
+              setSelectedStore(event.target.value);
+              setSelectedSellers([]);
+            } }
           >
             {stores.map((store, index) => (
               <option
-                value={ store.city }
+                value={ `${store.city}-${store.id}` }
                 key={ index }
               >
                 {`${store.name} - ${store.city}/${store.state}`}

@@ -12,7 +12,7 @@ function ApplicationProvider({ children }) {
   const [currentYear, setCurrentYear] = useState(currentDate.split('/')[2]);
   const [currentFullDate, setCurrentFullDate] = useState(currentDate);
   const [stores, setStores] = useState([]);
-  const [selectedStore, setSelectedStore] = useState('Cuiabá');
+  const [selectedStore, setSelectedStore] = useState('Cuiabá-1');
   const [sellers, setSellers] = useState([]);
   const [selectedSellers, setSelectedSellers] = useState([]);
   const [sellersToDisplay, setSellersToDisplay] = useState([]);
